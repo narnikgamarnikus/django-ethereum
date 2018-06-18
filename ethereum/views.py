@@ -2,7 +2,8 @@ from django.views.generic import DetailView, ListView, RedirectView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.edit import FormMixin
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
+from django.core.exceptions import PermissionDenied
 from django.urls import reverse
 from django.conf import settings
 from django import http
@@ -53,10 +54,17 @@ class EthereumCreateView(LoginRequiredMixin, RedirectView):
         return super(EthereumCreateView, self).get(request, *args, **kwargs)
 
 
-class EthereumDetailView(LoginRequiredMixin, FormMixin, DetailView):
+class EthereumDetailView(LoginRequiredMixin,
+                         FormMixin, DetailView):
 
     model = Ethereum
     form_class = EthereumPayForm
+
+    def get_object(self):
+        obj = get_object_or_404(Ethereum, pk=self.kwargs['pk'])
+        if obj.user == self.request.user:
+            return obj
+        raise PermissionDenied()
 
     def get_context_data(self, **kwargs):
         context = super(EthereumDetailView, self).get_context_data(**kwargs)

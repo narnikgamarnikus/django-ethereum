@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.messages",
     "ethereum",
+    "guardian"
 ]
 
 SITE_ID = 1
@@ -80,6 +81,11 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [  # noqa F405
             'django.template.loaders.app_directories.Loader',
         ],
     ),
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # default
+    'guardian.backends.ObjectPermissionBackend',
 ]
 
 INFURA_API_KEY = 'dVfxY2nOCHjUsCNaQhJn'

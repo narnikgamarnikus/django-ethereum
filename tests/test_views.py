@@ -88,8 +88,6 @@ class TestEthereumCreateView(TestCase):
         )
         self.assertEqual(resp.status_code, 302)
 
-        self.assertTemplateUsed(resp, 'ethereum/ethereum_form.html')
-
 
 class TestEthereumDetailView(TestCase):
 
@@ -97,6 +95,10 @@ class TestEthereumDetailView(TestCase):
         User = get_user_model()
         self.user = User.objects.create_user(
             username='user',
+            password='password'
+        )
+        User.objects.create_user(
+            username='user2',
             password='password'
         )
         self.client = Client()
@@ -125,7 +127,7 @@ class TestEthereumDetailView(TestCase):
             models.Ethereum.objects.filter(user=self.user).exists()
         )
         self.assertEqual(resp.status_code, 200)
-
+        self.assertTemplateUsed(resp, 'ethereum/ethereum_detail.html')
 
     def test_context_data(self):
         self.client.login(username='user', password='password')
@@ -133,6 +135,21 @@ class TestEthereumDetailView(TestCase):
         self.assertTrue(
             'form' in resp.context
         )
+
+    def test_permission_denies(self):
+
+        self.client.login(username='user2', password='password')
+        resp = self.client.get(reverse('ethereum_detail', kwargs={'pk': 1}))
+        self.assertEqual(resp.status_code, 403)
+        resp = self.client.post(
+            reverse('ethereum_detail', kwargs={'pk': 1}),
+            {
+                'address': '0x16bDd33A3541cd1f42F54f6d37EDB769842f1502',
+                'value': 0.0001,
+                'gas': 1000
+            }
+        )
+        self.assertEqual(resp.status_code, 403)
 
     def test_post(self):
         self.client.login(username='user', password='password')

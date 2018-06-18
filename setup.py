@@ -59,6 +59,7 @@ setup(
     install_requires=[
         'requests==2.19.1',
         'web3==4.3.0'
+        'django-guardian==1.4.9'
     ],
     license="MIT",
     zip_safe=False,
