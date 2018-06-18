@@ -3,8 +3,6 @@ from django.urls import re_path
 
 from . import views
 
-#app_name = 'django_ethereum'
-
 urlpatterns = [
     re_path(
         r'^$',

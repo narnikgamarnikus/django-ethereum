@@ -5,5 +5,5 @@ from django.conf.urls import url, include
 
 
 urlpatterns = [
-    url(r'^', include('django_ethereum.urls')),
+    url(r'^', include('ethereum.urls')),
 ]

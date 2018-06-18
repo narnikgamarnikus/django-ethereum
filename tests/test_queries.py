@@ -1,8 +1,8 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
-from django_ethereum.queries import total_balance
-from django_ethereum.models import Ethereum
+from ethereum.queries import total_balance
+from ethereum.models import Ethereum
 
 
 class TestTotalBalance(TestCase):

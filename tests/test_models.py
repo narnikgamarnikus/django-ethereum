@@ -10,7 +10,7 @@ Tests for `django-ethereum` models module.
 
 from django.test import TestCase
 
-from django_ethereum import models
+from ethereum import models
 from django.contrib.auth import get_user_model
 
 

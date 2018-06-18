@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.sites",
     "django.contrib.messages",
-    "django_ethereum",
+    "ethereum",
 ]
 
 SITE_ID = 1

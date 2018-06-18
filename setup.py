@@ -21,7 +21,7 @@ def get_version(*file_paths):
     raise RuntimeError('Unable to find version string.')
 
 
-version = get_version("django_ethereum", "__init__.py")
+version = get_version("ethereum", "__init__.py")
 
 
 if sys.argv[-1] == 'publish':
@@ -48,12 +48,12 @@ setup(
     name='django-ethereum',
     version=version,
     description="""Django using web3.py and etherscan for working with Ethereum""",
-    long_description=readme + '\n\n' + history,
+    long_description=readme + '\n\n' + history, 
     author='Vladimir Myshkovski',
     author_email='vladimirmyshkovski@gmail.com',
     url='https://github.com/narnikgamarnikus/django-ethereum',
     packages=[
-        'django_ethereum',
+        'ethereum',
     ],
     include_package_data=True,
     install_requires=[

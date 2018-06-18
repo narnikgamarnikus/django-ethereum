@@ -3,8 +3,8 @@ from django.test import RequestFactory
 from django.template import Context, Template
 from django.contrib.auth import get_user_model
 
-from django_ethereum import models
-from django_ethereum.templatetags import django_ethereum
+from ethereum import models
+from ethereum.templatetags import ethereum
 
 
 class TestRequestUserTotalBalance(TestCase):
@@ -23,7 +23,7 @@ class TestRequestUserTotalBalance(TestCase):
         request.user = self.user
 
         out = Template(
-            "{% load django_ethereum %}"
+            "{% load ethereum %}"
             "{% request_user_total_balance %}"
         ).render(Context({
             'request': request,
@@ -40,7 +40,7 @@ class TestRequestUserTotalBalance(TestCase):
         request = request_factory.get('/')
 
         out = Template(
-            "{% load django_ethereum %}"
+            "{% load ethereum %}"
             "{% request_user_total_balance %}"
         ).render(Context({
             'request': request,
@@ -69,7 +69,7 @@ class TestRequestUserTotalBalanceUsd(TestCase):
         request.user = self.user
 
         out = Template(
-            "{% load django_ethereum %}"
+            "{% load ethereum %}"
             "{% request_user_total_balance_usd %}"
         ).render(Context({
             'request': request,
@@ -86,7 +86,7 @@ class TestRequestUserTotalBalanceUsd(TestCase):
         request = request_factory.get('/')
 
         out = Template(
-            "{% load django_ethereum %}"
+            "{% load ethereum %}"
             "{% request_user_total_balance_usd %}"
         ).render(Context({
             'request': request,
