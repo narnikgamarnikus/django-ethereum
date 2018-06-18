@@ -19,5 +19,5 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'', include('django_ethereum.urls', namespace='django_ethereum')),
+    url(r'', include('ethereum.urls')),
 ]

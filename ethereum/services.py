@@ -5,13 +5,8 @@ from web3 import Web3, HTTPProvider
 import requests
 
 
-if settings.DEBUG is True:
-    net = 'rinkeby'
-else:
-    net = 'mainnet'
-
 w3 = Web3(HTTPProvider('https://{}.infura.io/{}/'.format(
-                       net,
+                       settings.NET,
                        settings.INFURA_API_KEY),
                        request_kwargs={'timeout': 60}))
 
@@ -46,7 +41,7 @@ def get_transaction_list_from_address(address):
 
     response = requests.get(
         'https://api{}.etherscan.io/api?module=account&action=txlist&address={}&startblock=0&endblock=latest&apikey={}'.format(
-            '-rinkeby' if net == 'rinkeby' else '',
+            '-rinkeby' if settings.NET == 'rinkeby' else '',
             address,
             settings.ETHERSCAN_API_KEY
         )

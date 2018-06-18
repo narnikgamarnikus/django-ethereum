@@ -20,6 +20,9 @@ class Ethereum(models.Model):
     address = models.CharField(max_length=42)
     private = models.CharField(max_length=66)
 
+    class Meta:
+        ordering = ['id']
+
     def save(self, *args, **kwargs):
         if not self.pk:
             new_address = generate_new_address()
@@ -38,8 +41,8 @@ class Ethereum(models.Model):
     def transactions(self):
         return get_transaction_list_from_address(self.address)
 
-    def spend(self, to_address, gas=90000, gas_price='To-Be-Determined', value=0,
-              data=None, nonce=None):
+    def spend(self, to_address, gas=90000, gas_price='To-Be-Determined',
+              value=0, data=None, nonce=None):
         transaction = create_transaction(from_address=self.address,
                                          to_address=to_address,
                                          gas=90000,

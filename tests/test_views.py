@@ -38,7 +38,7 @@ class TestListView(TestCase):
         resp = self.client.get(reverse('ethereum_list'))
         self.assertEqual(resp.status_code, 200)
 
-        self.assertTemplateUsed(resp, 'django_ethereum/ethereum_list.html')
+        self.assertTemplateUsed(resp, 'ethereum/ethereum_list.html')
 
     def test_pagination(self):
         self.client.login(username='user', password='password')
@@ -88,6 +88,8 @@ class TestEthereumCreateView(TestCase):
         )
         self.assertEqual(resp.status_code, 302)
 
+        self.assertTemplateUsed(resp, 'ethereum/ethereum_form.html')
+
 
 class TestEthereumDetailView(TestCase):
 
@@ -123,6 +125,7 @@ class TestEthereumDetailView(TestCase):
             models.Ethereum.objects.filter(user=self.user).exists()
         )
         self.assertEqual(resp.status_code, 200)
+
 
     def test_context_data(self):
         self.client.login(username='user', password='password')

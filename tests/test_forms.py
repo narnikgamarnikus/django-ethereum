@@ -1,10 +1,5 @@
 from django.test import TestCase
-
-from django.test import Client
-from django.urls import reverse
-from django_ethereum import models
-from django_ethereum import forms
-from django.contrib.auth import get_user_model
+from ethereum import forms
 
 
 class TestEthereumPayForm(TestCase):

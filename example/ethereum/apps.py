@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 
 class EthereumConfig(AppConfig):
-    name = 'django_ethereum'
+    name = 'ethereum'

@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'django_ethereum',
+    'ethereum',
 
     # if your app has other dependencies that need to be added to the site
     # they should be added here
@@ -121,3 +121,4 @@ STATIC_URL = '/static/'
 
 INFURA_API_KEY = 'dVfxY2nOCHjUsCNaQhJn'
 ETHERSCAN_API_KEY = 'VQDBC4GZA5MQT2F6IRW2U6RPH66HJRSF6S'
+NET = 'rinkeby'
